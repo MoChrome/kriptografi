@@ -137,7 +137,7 @@ function caesarCipherDecrypt(message, shift) {
       index = alpha.indexOf(c);
 
     if (index >= 0) {
-      var shiftLetter = alpha[(index + shift) % 26];
+      var shiftLetter = alpha[(index - shift) % 26];
       output += shiftLetter;
     } else {
       output += c;
