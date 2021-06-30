@@ -1,5 +1,5 @@
 const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  input = document.querySelector("input"),
+  input = document.getElementById("plaintext"),
   result = document.getElementById("result_cipher");
 
 function caesarCipher(message, shift) {
@@ -88,7 +88,7 @@ var Vigenere = (function () {
   };
 })();
 
-input.addEventListener("input", updateValue);
+plaintext.addEventListener("input", updateValue);
 function updateValue(e) {
   shift = document.getElementById("key_caesarcipher").value;
   kunci_railfence = document.getElementById("key_railfence").value;
