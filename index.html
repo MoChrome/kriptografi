@@ -11,60 +11,58 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <script src="app.js"></script>
   </head>
-
   <body>
     <div class="container">
       <div class="h1 text-center">Super Enkripsi</div>
     </div>
+    <div class="row justify-content-center">
+      <div class="col-3">
+      <label for="plaintext" class="form-label">Plaintext</label>
+      <div class="input-group mb-3">
+        <input
+          class="d-block float-end form-control"
+          name="plaintext"
+          id="plaintext"
+        ></input>
+      </div>
+      </div>
+      <div class="col-2">
+        <label for="key_caesarcipher" class="form-label">Key 1 (Caesar Cipher)</label>
+        <div class="input-group mb-3">
+          <input
+            class="form-control"
+            name="key_caesarcipher"
+            id="key_caesarcipher"
+            type="number"
+            value="1"
+            min="1"
+          />
+        </div>
+        <label for="key_railfence" class="form-label">Key 2</label>
+        <div class="input-group mb-3">
+          <input
+            class="form-control"
+            name="key_railfence"
+            id="key_railfence"
+            type="text"
+          />
+        </div>
+        <label for="key_vigenere" class="form-label">Key 3</label>
+        <div class="input-group mb-3">
+          <input
+            class="form-control"
+            name="key_vigenere"
+            id="key_vigenere"
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="col-3">
+        <p>Ciphertext</p>
+        <p id="result_cipher"></p>
+      </div>
+    </div>
+    <script src="app.js"></script>
   </body>
-  <div class="row justify-content-center">
-    <div class="col-5">
-      <textarea
-        class="d-block float-end"
-        name="plaintext"
-        id="plaintext"
-        cols="30"
-        rows="10"
-      ></textarea>
-    </div>
-    <div class="col">
-      <label for="key_caesarcipher" class="form-label">Key 1</label>
-      <div class="input-group mb-3">
-        <input
-          class="form-control"
-          name="key_caesarcipher"
-          id="key_caesarcipher"
-          type="text"
-        />
-      </div>
-      <label for="key_railfence" class="form-label">Key 2</label>
-      <div class="input-group mb-3">
-        <input
-          class="form-control"
-          name="key_railfence"
-          id="key_railfence"
-          type="text"
-        />
-      </div>
-      <label for="key_vigenere" class="form-label">Key 3</label>
-      <div class="input-group mb-3">
-        <input
-          class="form-control"
-          name="key_vigenere"
-          id="key_vigenere"
-          type="text"
-        />
-      </div>
-    </div>
-    <div class="col-5">
-      <textarea
-        name="ciphertext"
-        id="ciphertext"
-        cols="30"
-        rows="10"
-      ></textarea>
-    </div>
-  </div>
 </html>
