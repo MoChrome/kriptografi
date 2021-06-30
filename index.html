@@ -16,17 +16,18 @@
     </script>
   </head>
   <body>
-    <div class="container shadow p-3 mb-5 bg-light rounded ">
+    <div class="container shadow p-3 mb-5 bg-light rounded">
       <div class="h1 text-center mb-5">Super Enkripsi</div>
     <div class="row mb-5 justify-content-center">
       <div class="col-3">
       <label for="plaintext" class="form-label">Plaintext</label>
       <div class="input-group mb-3">
-        <input
+        <textarea
           class="d-block float-end form-control"
           name="plaintext"
           id="plaintext"
-        ></input>
+          rows="10"
+        ></textarea>
       </div>
       </div>
       <div class="col-3">
@@ -63,17 +64,18 @@
       <div class="col-3">
         <label for="ciphertext" class="form-label">Ciphertext</label>
       <div class="input-group mb-3">
-        <input
+        <textarea
           class="d-block float-end form-control"
           name="ciphertext"
           id="ciphertext"
-        ></input>
+          rows="10"
+        ></textarea>
       </div>
     </div>
   </div>
   <nav class="navbar fixed-bottom bg-light">
     <div class="container-fluid justify-content-center">
-      <p class="h6">©Kelompok : Dwi Fitriyanto, Chevi Candra Purnama</p>
+      <p class="h6">©Kelompok : Dwi Fitriyanto, Chevi Candra Purnama</p><br>
     </div>
   </nav>
     <script src="app.js"></script>
