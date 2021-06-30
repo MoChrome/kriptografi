@@ -1,5 +1,6 @@
 const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  shift = document.getElementById("key_caesarcipher").value;
+  input = document.querySelector("input"),
+  result = document.getElementById("result_cipher");
 
 function caesarCipher(message, shift) {
   var output = "";
@@ -24,12 +25,31 @@ function caesarCipher(message, shift) {
   return output;
 }
 
-const input = document.querySelector("input");
-const result = document.getElementById("result_cipher");
+function RailFenceEncrypt(pesan, kunci) {
+  plaintext = pesan.toLowerCase().replace(/[^a-z]/g, "");
+  var key = parseInt(kunci);
+  ciphertext = "";
+  for (line = 0; line < key - 1; line++) {
+    skip = 2 * (key - line - 1);
+    j = 0;
+    for (i = line; i < plaintext.length; ) {
+      ciphertext += plaintext.charAt(i);
+      if (line == 0 || j % 2 == 0) i += skip;
+      else i += 2 * (key - 1) - skip;
+      j++;
+    }
+  }
+  for (i = line; i < plaintext.length; i += 2 * (key - 1))
+    ciphertext += plaintext.charAt(i);
+  return ciphertext;
+}
 
-// const caesar = caesarCipher(plaintext, shift);
 input.addEventListener("input", updateValue);
 function updateValue(e) {
-  result.textContent = caesarCipher(e.target.value, Number(shift));
-  console.log(shift);
+  shift = document.getElementById("key_caesarcipher").value;
+  kunci_railfence = document.getElementById("key_railfence").value;
+  result.textContent = RailFenceEncrypt(
+    caesarCipher(e.target.value, parseInt(shift)),
+    kunci_railfence
+  );
 }
