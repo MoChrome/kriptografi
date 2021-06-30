@@ -44,12 +44,61 @@ function RailFenceEncrypt(pesan, kunci) {
   return ciphertext;
 }
 
+var Vigenere = (function () {
+  var AcharCode = "A".charCodeAt(0);
+  var ZcharCode = "Z".charCodeAt(0);
+  var AZlen = ZcharCode - AcharCode + 1;
+
+  function encrypt(text, key, reverse, keepspaces) {
+    var plaintext = keepspaces ? text : text.replace(/\s+/g, "");
+    var messageLen = plaintext.length;
+    var keyLen = key.length;
+    var enctext = "";
+    var encriptionDir = reverse ? -1 * AZlen : 0;
+
+    for (var i = 0; i < messageLen; i++) {
+      var plainLetter = plaintext.charAt(i).toUpperCase();
+      if (plainLetter.match(/\s/)) {
+        enctext += plainLetter;
+        continue;
+      }
+
+      var keyLetter = key.charAt(i % keyLen).toUpperCase();
+      var vigenereOffset = keyLetter.charCodeAt(0) - AcharCode;
+      var encLetterOffset =
+        (plainLetter.charCodeAt(0) -
+          AcharCode +
+          Math.abs(encriptionDir + vigenereOffset)) %
+        AZlen;
+
+      enctext += String.fromCharCode(AcharCode + encLetterOffset);
+    }
+
+    return enctext;
+  }
+
+  return {
+    encrypt: function (text, key, keepspaces) {
+      return encrypt(text, key, false, keepspaces);
+    },
+
+    decrypt: function (text, key, keepspaces) {
+      return encrypt(text, key, true, keepspaces);
+    },
+  };
+})();
+
 input.addEventListener("input", updateValue);
 function updateValue(e) {
   shift = document.getElementById("key_caesarcipher").value;
   kunci_railfence = document.getElementById("key_railfence").value;
-  result.value = RailFenceEncrypt(
-    caesarCipher(e.target.value, parseInt(shift)),
-    kunci_railfence
-  );
+  kunci_vigenere = document.getElementById("key_vigenere").value;
+  result.value = Vigenere.encrypt(
+    RailFenceEncrypt(
+      caesarCipher(e.target.value, parseInt(shift)),
+      kunci_railfence
+    ),
+    kunci_vigenere,
+    true
+    );
 }
